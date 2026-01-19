@@ -16,6 +16,11 @@ function App() {
     })
   }
 
+  const handleAddUser = (newUser) => {
+    setUsers((prev) => [newUser, ...prev]);
+  };
+
+
   useEffect(() => {
     const fetchUsers = async () => {
       const {data , error} = await supabase.from('users').select()
@@ -44,7 +49,7 @@ function App() {
       </header>
 
       <section className="w-full max-w-xl bg-white rounded-2xl shadow-lg p-6 mb-8">
-        <AddUser/>
+         <AddUser onAddUser={handleAddUser} />
       </section>
 
       <section className="w-full max-w-xl">
